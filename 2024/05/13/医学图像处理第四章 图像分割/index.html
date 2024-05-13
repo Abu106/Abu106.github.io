@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>医学图像处理第四章 图像分割 | Abu106's world</title><meta name="author" content="Abu106"><meta name="copyright" content="Abu106"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="[TOC] 第四章 图像分割图像分割概念1.图像分类、物体检测与图像分割的细分类 图像分类：识别图像中物体类别  物体检测：计算图中物体的区域范围  语义分割：同类物体分割为同一区域  实例分割：每个物体分割为一个区域  全景分割：图中每个像素都给予标签 一、图像分割表示1.两种基本的图像分割表示方法 1)基于区域的表达(像素标签、多标签) 2)基于边界的表达(边缘点坐标集合、曲面模型) 二、图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="医学图像处理第四章 图像分割">
+<meta property="og:url" content="http://example.com/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/index.html">
+<meta property="og:site_name" content="Abu106&#39;s world">
+<meta property="og:description" content="[TOC] 第四章 图像分割图像分割概念1.图像分类、物体检测与图像分割的细分类 图像分类：识别图像中物体类别  物体检测：计算图中物体的区域范围  语义分割：同类物体分割为同一区域  实例分割：每个物体分割为一个区域  全景分割：图中每个像素都给予标签 一、图像分割表示1.两种基本的图像分割表示方法 1)基于区域的表达(像素标签、多标签) 2)基于边界的表达(边缘点坐标集合、曲面模型) 二、图像">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-05-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-13T06:29:18.008Z">
+<meta property="article:author" content="Abu106">
+<meta property="article:tag" content="医学图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/touxiang.jpg"><link rel="shortcut icon" href="/img/touxiang.jpg"><link rel="canonical" href="http://example.com/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '医学图像处理第四章 图像分割',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-13 14:29:18'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/music/Yellow-Coldplay.mp3"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Abu106's world"><span class="site-name">Abu106's world</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/music/Yellow-Coldplay.mp3"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">医学图像处理第四章 图像分割</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-12T16:00:00.000Z" title="发表于 2024-05-13 00:00:00">2024-05-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-13T06:29:18.008Z" title="更新于 2024-05-13 14:29:18">2024-05-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="医学图像处理第四章 图像分割"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>[TOC]</p>
+<h1 id="第四章-图像分割"><a href="#第四章-图像分割" class="headerlink" title="第四章 图像分割"></a>第四章 图像分割</h1><h4 id="图像分割概念"><a href="#图像分割概念" class="headerlink" title="图像分割概念"></a>图像分割概念</h4><p>1.图像分类、物体检测与图像分割的细分类</p>
+<p>图像分类：识别图像中物体类别 </p>
+<p>物体检测：计算图中物体的区域范围 </p>
+<p>语义分割：同类物体分割为同一区域 </p>
+<p>实例分割：每个物体分割为一个区域 </p>
+<p>全景分割：图中每个像素都给予标签</p>
+<h4 id="一、图像分割表示"><a href="#一、图像分割表示" class="headerlink" title="一、图像分割表示"></a>一、图像分割表示</h4><p>1.两种基本的图像分割表示方法</p>
+<p>1)基于区域的表达(像素标签、多标签)</p>
+<p>2)基于边界的表达(边缘点坐标集合、曲面模型)</p>
+<h4 id="二、图像分割方式"><a href="#二、图像分割方式" class="headerlink" title="二、图像分割方式"></a>二、图像分割方式</h4><p>1.边缘检测技术</p>
+<p>在数字图像中利用差分来近似微分，借助空域微分算子卷积实现边缘检测。</p>
+<p>几种常见的边缘检测方法： </p>
+<ul>
+<li><p>梯度算子（一阶微分算子）</p>
+<ul>
+<li><p>Robert算子- Prewitt算子- Sobel算子</p>
+<p>连续函数f(x, y)在位置(x, y)的梯度可表示为一个矢量</p>
+</li>
+</ul>
+</li>
+<li><p>拉普拉斯算子（二阶微分算子） </p>
+</li>
+<li><p>Canny边缘检测</p>
+</li>
+</ul>
+<p>连续函数f(x, y)在位置(x, y)的梯度可表示为一个矢量</p>
+<p>2.自动确定阈值方法</p>
+<p>Ostu法（又称最大类间方差法或大津法）</p>
+<p> ① 为阈值T选一个初始估计值，一般为图像最大亮度值和最 小亮度值的中间值 </p>
+<p>② 使用T值分割图像，会产生两组像素：亮度值大于等于T 的所有像素组成G1，亮度值小于T的所有像素组成G2 ③ 分别求G1和G2的像素数目占图像总像素数的比例p1和p2 </p>
+<p>④ 分别计算G1和G2范围内像素的平均值U1和U2 </p>
+<p>⑤ 计算一个新阈值T &#x3D; p1×U1+p2×U2 </p>
+<p>⑥ 重复步骤2→5，直到逐次迭代所得的T值之差小于预先 指定的限度则停止</p>
+<p>3.自适应阈值法（AdaptiveThreshold，也称动态阈值法）</p>
+<ol>
+<li>将图像分为多个小块，分块计算阈值（用前述自动方法）</li>
+<li>基于每块中心的阈值，对全图进行插值，得到全图连续变化阈值</li>
+</ol>
+<p>4.区域生长法</p>
+<ul>
+<li>对每个需要分割区域找一个种子像 素作为生长起点 </li>
+<li>将种子像素周围与其具有相似性质 的像素合并到种子像素所在区域 </li>
+<li>将这些新像素当作新种子像素重复 上述过程，直至再没有满足条件的 像素被包括进来</li>
+</ul>
+<p>5.区域生长法的三要素</p>
+<ul>
+<li>选择合适的种子像素</li>
+<li>确定相似性尊则（灰度相近、纹理相近）</li>
+<li>指定停止生长规则</li>
+</ul>
+<p>6.图像分区算法</p>
+<p>1）区域分裂合并</p>
+<p>① 将图像分裂为多个小块</p>
+<p>② 如果小块内部灰度不均匀（如标准差偏大），则继续分裂 </p>
+<p>③ 相邻小块如果灰度相近，则合并</p>
+<p>2）分水岭算法</p>
+<p>① 把图像的梯度幅值看作高度，则边缘形成山峰，物体内部形成山谷 </p>
+<p>② 从每个谷底向上漫水，随着水位升高，起初的孤立湖泊最终相互邻接 </p>
+<p>③ 每次邻接发生，就把邻接像素设为水坝，由此把图像分割成若干区域</p>
+<p>特点：适合分割孤立零散、各自内部均匀的多个物体，容易造成图像的过度分割</p>
+<p>基于标志点的分水岭算法(marker-basedwatershed) : 通过指定最初的谷底（标志点）的位置和数目，可以控制最终分割区域的数目和结果</p>
+<p>3）SLIC超像素分割</p>
+<p>① 把图像均分成多个子块 （超像素，superpixel） </p>
+<p>② 对于每个像素，找出其所 属和相邻的所有子块，判断它的特征与哪个子块最接近，则将其分配给该子块，从而形成新的分块 </p>
+<p>③ 重复低2步直至收敛</p>
+<p>7.聚类算法（Clustering）</p>
+<p>• 每个样本的特征是多维的（如水果的颜色和重量，像素的灰度和位置） </p>
+<p>• 根据样本群体在特征空间中的分布状况对样本在特征空间中进行分类 </p>
+<p>• 自动优化分类规则（如分界线位置）使样本具有最大类内相似性和最大类间差异 </p>
+<p>• 经典的聚类方法有k-均值、模糊C均值、支持向量机、随机森林等</p>
+<p>8.K-均值算法（k-Means）</p>
+<p>假设要把样本群体分为k类 </p>
+<p>① 人为或随机指定k个聚类中心点的坐标 </p>
+<p>② 分类：对于每个样本点，计算其与k个聚类中心的距离，把它分配给距离最近的那一类。依此方法将所有样本点分为k个类 </p>
+<p>③ 计算每个类中所有样本点的质心位置，作为该类新的聚类中心 </p>
+<p>④ 采用新的聚类中心，重复2→3，直到收敛</p>
+<p>局限性</p>
+<p>• 初始聚类中心的选取对算法效率和结果有较大的影响 </p>
+<p>• 算法对孤立点敏感，对噪声和灰度不均匀敏感 </p>
+<p>• 如果采用误差平方和函数作为准则函数，有可能会将大类拆分成小类</p>
+<p>9.模糊C均值算法</p>
+<p>假设要把样本群体分为C类 </p>
+<p>① 人为或随机指定C个聚类中心的坐标𝑚 (𝑗&#x3D;1,2,…,𝐶) </p>
+<p>② 对于每个样本点𝑥，依据它到𝑚的距离计算它属于第𝑗个类的模糊隶属度𝜇(𝑥) </p>
+<p>③ 对于每个类，以𝜇(𝑥)为权重对所有样本点做加权平均，计算该类对新聚类中心 </p>
+<p>④ 采用新的聚类中心，重复2→3，直到收敛</p>
+<p><img src="https://raw.githubusercontent.com/Abu106/imagestore/main/image/image-20240513114221792.png" alt="image-20240513114221792"></p>
+<p>• 对比k-均值，模糊C均值的核心优势是采用柔性的隶属度代替了硬性的分类，从而 增强了算法对于噪声的鲁棒性，减弱了对于初始聚类中心位置的敏感性 </p>
+<p>• 在柔性分类基础上，若要实现硬性分类，只需把每个样本归为其隶属度最大的类</p>
+<p>10.形态学运算</p>
+<p>1）各种二值形态学运算 </p>
+<p>膨胀：或运算 </p>
+<p>腐蚀：与运算 </p>
+<p>开运算：先腐蚀再膨胀，可以断开小的连接区域，不影响大的区域 </p>
+<p>闭预算：先膨胀后腐蚀，可以连接小的连接区域，不影响大的区域</p>
+<p>顶帽变换：原图减去开运算，突出原图中比周围亮的小区域 </p>
+<p>骨架运算：腐蚀到只剩单像素宽度的骨架</p>
+<p>2）灰度形态学运算 </p>
+<p>原理与二值形态学相同，操作对象变为灰度图像，逻辑或变成取最大值，逻辑与变成取最小值 </p>
+<p>膨胀：亮区扩张，暗区收缩 </p>
+<p>腐蚀：暗区扩张，亮区收缩 </p>
+<p>开运算：先腐蚀再膨胀，断开小的亮区，连接小的暗区 </p>
+<p>闭预算：先膨胀后腐蚀，可以连接小的亮区，断开小的暗区</p>
+<p>3）基于纹理的图像分割 </p>
+<p>纹理是指像素灰度在空间中呈现出具有特定规律的分布模式 </p>
+<p>物体间的纹理差异可以用于图像分割</p>
+<p><img src="https://raw.githubusercontent.com/Abu106/imagestore/main/image/image-20240513114445471.png" alt="image-20240513114445471"></p>
+<p>11.形变模型算法</p>
+<p>分为两类：参数形变模型和几何形变模型</p>
+<p><img src="https://raw.githubusercontent.com/Abu106/imagestore/main/image/image-20240513114533638.png" alt="image-20240513114533638"></p>
+<p>12.参数形变模型（Snake）</p>
+<p>基于参数化的形状表示来实现 边界点的移动造成曲线的变形 点受图像边缘吸引产生运动 相邻的点之间互相牵制维持曲线形状光滑 曲线变形的目标是极小化外部能量与内部能量之和 外部能量衡量模型与物体边缘吻合程度，内部能量 衡量曲线自身光滑程度</p>
+<p>形状约束的参数形变模型—统计形状模型</p>
+<p>基于一定量的样本训练得到 能够参数化地表征物体在不同样本间的变形规律 在分割过程中能够保持合理形状</p>
+<p>13.几何形变模型</p>
+<p>基于水平集的形状表示来实现 通过距离图的像素值演变来实现形状改变 原图的梯度驱动距离图的演变 演变过程中保持距离图的平滑 距离图演变目标是极小化外部能量与内部 能量之和 外部能量衡量模型与物体边缘吻合程度， 内部能量衡量区域内部均匀程度和物体边 界（0水平集）光滑程度</p>
+<p>14.对比两种形变模型 </p>
+<p>• 参数模型计算量小，速度快；几何形变模型计算量大、速度慢 </p>
+<p>• 参数形变模型便于加入通过统计学习得到的形状变化规律 </p>
+<p>• 几何形变模型便于表示形状拓扑变化（例如断开或增加新的轮廓） ，而 这对于参数形变模型比较困难 </p>
+<p>• 几何形变模型可以得到像素级的形状细节，参数形变模型的细节度有限</p>
+<p>15.图割算法</p>
+<p>• 把图像转化为图结构（graph），把图像分割问题转化为graph的切割问题 </p>
+<p>• Graph中每个结点（node）代表一个像素（或超像素），node之间的连接（edge） 代表像素间的邻接关系 </p>
+<p>• Graph的切割是指断开部分edge，把graph分为互不连通的几个部分</p>
+<p>16.基于图谱配准的分割 </p>
+<p>优势：可实现多物体同时分割；可以借助先验解剖知识；算法鲁棒性好；</p>
+<p>难点：如何解决图谱与目标个体之间较；大的形态差异；如何应对各种病灶的出现；如何减小计算量；</p>
+<h4 id="三、图像分割的评价"><a href="#三、图像分割的评价" class="headerlink" title="三、图像分割的评价"></a>三、图像分割的评价</h4><p><strong>分割精度</strong></p>
+<p>1.基于区域的精度（例如Dice系数）</p>
+<p><img src="https://raw.githubusercontent.com/Abu106/imagestore/main/image/image-20240513115557523.png" alt="image-20240513115557523"></p>
+<p> Dice可以近似认为是算法分割得到区域Rs与金标准区域Rg（通常由人类专家勾画）之间的重合比例 ⋂代表交集，|·|代表像素数目</p>
+<p>2.基于边界的精度 </p>
+<p>设A为算法分割区域的边界，B为金标准区域的边界 </p>
+<p>a为A上任一点，b为B上任一点, d(·)代表距离 </p>
+<p>平均边界距离： 𝒉 (𝑨, 𝑩) &#x3D;mean 𝒂∈𝑨  min | a-b|Hausdorff距离： 𝒉 (𝑨, 𝑩) &#x3D;max 𝒂∈𝑨  min| a-b|</p>
+<p>上述两种距离均可以拓展为双向形式， 即𝑯(𝐀,𝐁)&#x3D;max[h(A,B),h(B,A)]</p>
+<p><img src="https://raw.githubusercontent.com/Abu106/imagestore/main/image/image-20240513115831278.png" alt="image-20240513115831278"></p>
+<p>3.上述量化指标只是衡量精度的客观方法，仍需人类专家主观目测评价</p>
+<p><strong>鲁棒性</strong> </p>
+<p>算法对于复杂多变的目标图像的稳定性，以及算法对于自身参数设置变化的稳定性 </p>
+<p><strong>算法效率</strong> </p>
+<p>算法的运行速度，受图像大小、算法复杂度、计算设备影响 </p>
+<p><strong>区域统计特性</strong> </p>
+<p>在分割结果没有金标准的情况下，可采用区域的统计学特性(灰度均匀性、纹理特 征等)作为测度。基本的测度包括：区域内均匀性、区域内差异性和区域间差异性。</p>
+<h4 id="四、图像分割的临床应用"><a href="#四、图像分割的临床应用" class="headerlink" title="四、图像分割的临床应用"></a>四、图像分割的临床应用</h4><p>骨骼的分割在骨科的手术规划中应用广泛，如骨骼形态学参数的测量、骨量的统计等，骨骼的生物力学有限元仿真也需要以准确的分割为 基础。</p>
+<p>血管分割包括心脏冠状动脉分割、头颈部血管分割、肝脏的动、静脉分割、肺部血管树分割等，用于血管形态的分析、狭窄的检测、血流动力学建模、血管与肿瘤的位置关系评估、外科手术计划的制订。</p>
+<p>肝胆图像分割用于肝脏切除、肝移植等手术的术前规划和术后评估，需要分割出肝脏及其内部的各种血管、胆管、肿瘤等结构，必要时还需要分割肝脏周围的胆囊、胰腺、胃、肾、骨骼等组织</p>
+<p>方便医生了解各结构之间的相对为位置关系，规划手术方案。</p>
+<p>有时还需要将肝脏分割成不同的肝区，用来评估切除风险。</p>
+<p>脑部影像的分割对手术规划、放疗手术计划的制订也起到了积极的作用。</p>
+<p>神经外科手术所需要分割的组织结构众多，包括脑部的血管、肿瘤、头骨、神经束、以及脑组织的细分（灰质、白质、脑脊液、小脑、脑干）等，可能还需要借助图像配准的手段来融合CT与核磁影像，以实现所有组织的分割和融合。</p>
+<h4 id="五、作业"><a href="#五、作业" class="headerlink" title="五、作业"></a>五、作业</h4><ol>
+<li>简述对比参数形变模型和几何形变模型的各自优缺点 </li>
+<li>计算下图在竖直方向的灰度共生矩阵</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Abu106/imagestore/main/image/image-20240513142911051.png" alt="image-20240513142911051"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Abu106</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/">http://example.com/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Abu106's world</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">医学图像处理</a></div><div class="post_share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96/" title="医学图像处理第六章 三维可视化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">医学图像处理第六章 三维可视化</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/10/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA/" title="医学图像处理第三章 图像增强"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">医学图像处理第三章 图像增强</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/09/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%BB%AA%E8%AE%BA%E7%AC%AC%E4%B8%80%E8%8A%82/" title="医学图像处理绪论第一节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-09</div><div class="title">医学图像处理绪论第一节</div></div></a></div><div><a href="/2024/03/08/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%BB%AA%E8%AE%BA%E7%AC%AC%E4%B8%89%E8%8A%82/" title="医学图像处理绪论第三节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-08</div><div class="title">医学图像处理绪论第三节</div></div></a></div><div><a href="/2024/03/09/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%BB%AA%E8%AE%BA%E7%AC%AC%E4%BA%8C%E8%8A%82/" title="医学图像处理绪论第二节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-09</div><div class="title">医学图像处理绪论第二节</div></div></a></div><div><a href="/2024/03/11/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E4%B8%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F/" title="医学图像处理第一章 数字图像和医学图像"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-11</div><div class="title">医学图像处理第一章 数字图像和医学图像</div></div></a></div><div><a href="/2024/05/10/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA/" title="医学图像处理第三章 图像增强"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">医学图像处理第三章 图像增强</div></div></a></div><div><a href="/2024/04/11/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" title="医学图像处理第二章 数字图像基本运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-11</div><div class="title">医学图像处理第二章 数字图像基本运算</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Abu106</div><div class="author-info__description">阿逋的狗窝</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2"><span class="toc-number">1.</span> <span class="toc-text">第四章 图像分割</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">图像分割概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">一、图像分割表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">二、图像分割方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E8%AF%84%E4%BB%B7"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">三、图像分割的评价</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E4%B8%B4%E5%BA%8A%E5%BA%94%E7%94%A8"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">四、图像分割的临床应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">五、作业</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="医学图像处理第七章 深度学习与图像处理">医学图像处理第七章 深度学习与图像处理</a><time datetime="2024-05-12T16:00:00.000Z" title="发表于 2024-05-13 00:00:00">2024-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E9%85%8D%E5%87%86/" title="医学图像处理第五章 图像配准">医学图像处理第五章 图像配准</a><time datetime="2024-05-12T16:00:00.000Z" title="发表于 2024-05-13 00:00:00">2024-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96/" title="医学图像处理第六章 三维可视化">医学图像处理第六章 三维可视化</a><time datetime="2024-05-12T16:00:00.000Z" title="发表于 2024-05-13 00:00:00">2024-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/13/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" title="医学图像处理第四章 图像分割">医学图像处理第四章 图像分割</a><time datetime="2024-05-12T16:00:00.000Z" title="发表于 2024-05-13 00:00:00">2024-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/10/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA/" title="医学图像处理第三章 图像增强">医学图像处理第三章 图像增强</a><time datetime="2024-05-09T16:00:00.000Z" title="发表于 2024-05-10 00:00:00">2024-05-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Abu106</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
